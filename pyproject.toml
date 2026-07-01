@@ -1,0 +1,108 @@
+[build-system]
+requires = [
+    "setuptools>=80",
+    "wheel",
+]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "aimo-proof-pilot"
+version = "2026.6.25"
+description = "AIMO Proof Pilot data, inference, online GRPO rollout, LoRA training, and upload pipeline."
+readme = "src/README.md"
+requires-python = ">=3.12"
+license = "LicenseRef-Proprietary"
+authors = [
+    { name = "AIMO Proof Pilot Contributors" },
+]
+keywords = [
+    "AIMO",
+    "GRPO",
+    "LoRA",
+    "vLLM",
+    "mathematical-proof",
+    "OLMo",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+    "pyarrow>=24",
+]
+
+[project.optional-dependencies]
+inference = [
+    "openai-harmony>=0.0.8",
+    "transformers>=5.9",
+    "vllm>=0.22",
+]
+training = [
+    "datasets>=4.8",
+    "peft>=0.19",
+    "safetensors>=0.7",
+    "torch>=2.11",
+    "transformers>=5.9",
+    "trl>=1.5",
+]
+container = [
+    "accelerate>=1.13",
+    "datasets>=4.8",
+    "openai-harmony>=0.0.8",
+    "peft>=0.19",
+    "pyarrow>=24",
+    "safetensors>=0.7",
+    "torch>=2.11",
+    "transformers>=5.9",
+    "trl>=1.5",
+    "vllm>=0.22",
+]
+dev = [
+    "pytest>=9",
+]
+
+[project.scripts]
+aimo-build-dataset = "aimo_data.build_dataset:main"
+aimo-run = "aimo_inference.entrypoints.run:main"
+aimo-train = "aimo_training.entrypoints.train:main"
+aimo-upload = "execution.upload:main"
+
+[tool.aimo-proof-pilot]
+release_date = "2026-06-25"
+dataset_eval_size = 16
+dataset_train_size = 4096
+problems_per_update = 64
+group_size = 16
+gradient_update_count = 64
+rollout_samples_per_update = 1024
+primary_contestant_model = "OLMo-3.1-32B-Think"
+primary_judge_model = "gpt-oss-120b"
+
+[tool.setuptools.packages.find]
+where = [
+    "src",
+]
+
+[tool.pytest.ini_options]
+testpaths = [
+    "tests",
+]
+pythonpath = [
+    "src",
+]
+addopts = [
+    "-ra",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"

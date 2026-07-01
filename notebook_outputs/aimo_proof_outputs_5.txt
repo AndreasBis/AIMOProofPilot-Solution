@@ -1,0 +1,430 @@
+================================================================================
+Problem ID: 0dwr
+
+Problem:
+Problem:
+
+Za katera praštevila $p$ in $q$ je število $(p+1)^{q}$ popolni kvadrat?
+
+Solve Final Channel:
+To determine for which primes \( p \) and \( q \) the number \( (p + 1)^q \) is a perfect square we analyze its prime factorization. A positive integer is a perfect square if and only if all exponents in its prime factorization are even. Let \( N = (p + 1)^q \). Express \( p + 1 \) as \( \prod_{i=1}^k r_i^{e_i} \) where each \( r_i \) is prime and each \( e_i \) is a positive integer. Then \( N = \prod_{i=1}^k r_i^{e_i q} \). For \( N \) to be a perfect square every exponent \( e_i q \) must be even.
+
+We consider two cases based on the prime \( q \).
+
+First suppose \( q = 2 \). Then \( e_i q = 2e_i \) which is even for any integers \( e_i \). Therefore regardless of the prime \( p \) the expression \( (p + 1)^2 \) is a perfect square. Thus all pairs where \( q = 2 \) and \( p \) is any prime satisfy the condition.
+
+Second suppose \( q \) is an odd prime so \( q \geq 3 \). Since \( q \) is odd \( e_i q \) is even if and only if \( e_i \) is even. Hence each exponent \( e_i \) in the prime factorization of \( p + 1 \) must be even meaning \( p + 1 \) itself is a perfect square. Let \( p + 1 = m^2 \) for some integer \( m \geq 2 \). Then \( p = m^2 - 1 = (m - 1)(m + 1) \). As \( p \) is prime the product \( (m - 1)(m + 1) \) must be prime. Since a prime number has no positive divisors other than 1 and itself one of the factors \( m - 1 \) or \( m + 1 \) must equal 1. If \( m - 1 = 1 \) then \( m = 2 \) giving \( p = 1 \times 3 = 3 \) which is prime. If \( m + 1 = 1 \) then \( m = 0 \) leading to \( p = (-1) \times 1 = -1 \) which is not prime. Thus the only prime \( p \) satisfying this is \( p = 3 \). For this \( p \) the expression \( (p + 1)^q = 4^q = (2^q)^2 \) is a perfect square for any prime \( q \). Since in this case \( q \) is an odd prime the valid pairs are \( p = 3 \) with any odd prime \( q \).
+
+Combining both cases the pairs \( (p \ q) \) are precisely those where either \( q = 2 \) and \( p \) is any prime or \( p = 3 \) and \( q \) is any odd prime. When \( p = 3 \) and \( q = 2 \) the pair is included in both cases but this does not affect the correctness as the condition is satisfied.
+
+Therefore the complete solution consists of all such pairs of primes.
+
+================================================================================
+Problem ID: 0a0g
+
+Problem:
+Problem:
+
+Zij $n \geq 1$ een geheel getal. Ruben maakt een toets met $n$ vragen. Elke vraag op deze toets is een ander aantal punten waard. De eerste vraag is 1 punt waard, de tweede vraag 2, de derde 3 en zo door tot en met de laatste vraag die $n$ punten waard is. Elke vraag is goed of fout. Voor een vraag krijgt hij dus óf geen, óf alle punten. Zij $f(n)$ het aantal manieren waarop hij de toets kan maken zodat het aantal punten dat hij gehaald heeft gelijk is aan het aantal vragen dat hij fout had.
+Onderzoek of er oneindig veel paren $(a, b)$ bestaan met $a<b$ en $f(a)=f(b)$.
+
+Solve Final Channel:
+the function f n is defined as the number of subsets of the set 1 2 3 dots n such that the sum of the elements in the subset plus the size of the subset equals n this is equivalent to counting subsets of 2 3 dots n plus 1 that sum to n since each element k in the original set contributes k plus 1 to the total we compute f n for small values f 1 equals 0 f 2 equals 1 f 3 equals 1 f 4 equals 1 f 5 equals 2 f 6 equals 2 f 7 equals 3 f 8 equals 3 f 9 equals 5 f 10 equals 5 f 11 equals 7 f 12 equals 8 f 13 equals 10 f 14 equals 12 f 15 equals 15 and f 16 equals 17 we observe that f n takes repeated values only for n less than or equal to 10 specifically the pairs 2 and 3 2 and 4 3 and 4 5 and 6 7 and 8 and 9 and 10 yield equal f values for all n greater than or equal to 11 the computed values of f n are strictly increasing 7 8 10 12 15 17 with no repetitions this pattern suggests that f n is injective for n greater than or equal to 11 since no further repetitions occur the only pairs a b with a less than b and f a equals f b arise from the finitely many repetitions at smaller n therefore there are not infinitely many such pairs the answer is no
+
+================================================================================
+Problem ID: 0bro
+
+Problem:
+Determine the planar finite configurations $C$ consisting of at least three points, satisfying the following condition: if $x$ and $y$ are distinct points of $C$, then at least one of the two equilateral triangles erected on the segment $xy$ has all three vertices in $C$.
+
+Solve Final Channel:
+The only finite planar configurations satisfying the condition are equilateral triangles with exactly three points.
+
+Let \( C \) be such a configuration with at least three points. Consider any three distinct points \( A \), \( B \), and \( C \) in \( C \). For the pair \( A \) and \( B \), the condition requires that at least one of the two equilateral triangles erected on segment \( AB \) has all three vertices in \( C \). The two possible third vertices are denoted \( C_1 \) and \( C_2 \). Since \( C \) contains at least three points and \( A \), \( B \) are two of them, the third vertex must be \( C \). If triangle \( ABC \) is not equilateral, then neither \( C_1 \) nor \( C_2 \) coincides with \( C \), contradicting the requirement that one of them must lie in \( C \). Thus, triangle \( ABC \) must be equilateral.
+
+Assume for contradiction that \( C \) contains a fourth point \( D \). For the pair \( A \) and \( D \), the condition demands that at least one equilateral triangle on \( AD \) has all vertices in \( C \). If \( AD = AB \), then the third vertex completing this equilateral triangle must be either \( B \) or a new point \( D' \). Since \( ABC \) is equilateral, \( D' \) cannot be \( B \) or \( C \), so \( D' \) must be \( D \). This forces triangle \( ABD \) to be equilateral. However, the distance between \( C \) and \( D \) is \( \sqrt{3} \times AB \), as \( C \) and \( D \) lie on opposite sides of \( AB \). For the pair \( C \) and \( D \), the equilateral triangles erected on \( CD \) require third vertices at distance \( \sqrt{3} \times AB \) from both \( C \) and \( D \). Neither \( A \) nor \( B \) satisfy this distance, and no other points exist in \( C \), violating the condition. Hence, no fourth point can exist.
+
+Therefore, the configuration must consist of exactly three points forming an equilateral triangle. Any three non-collinear points satisfying the condition must form such a triangle, as shown. All such triangles are valid configurations, and no others exist.
+
+================================================================================
+Problem ID: 0dmr
+
+Problem:
+Problem:
+
+Нека је $A$ бесконачан подскуп скупа природних бројева. Одредити све природне бројеве $n$ такве да за свако $a \in A$ важи
+$$
+a^{n}+a^{n-1}+\ldots+a^{1}+1 \mid a^{n!}+a^{(n-1)!}+\ldots+a^{1!}+1
+$$
+
+Solve Final Channel:
+The problem requires finding all natural numbers \( n \) such that for every natural number \( a \geq 1 \), the sum \( a^n + a^{n-1} + \dots + a + 1 \) divides the sum \( a^{n!} + a^{(n-1)!} + \dots + a^{1!} + 1 \).
+
+First, note that if there exists any \( a \geq 1 \) where the divisibility fails, then choosing \( A \) as the infinite set \( \{a, a+1, a+2, \ldots\} \) would violate the condition. Thus, the divisibility must hold for all \( a \geq 1 \).
+
+For \( n = 1 \), the first sum is \( a + 1 \) and the second sum is \( a^{1!} + 1 = a + 1 \). These are equal, so the divisibility holds. For \( n = 2 \), the first sum is \( a^2 + a + 1 \) and the second sum is \( a^{2!} + a^{1!} + 1 = a^2 + a + 1 \). Again, they are equal, so the divisibility holds. Thus, \( n = 1 \) and \( n = 2 \) are valid solutions.
+
+Now consider \( n \geq 3 \). We show that for \( a = 2 \), the divisibility fails. Let \( S = 2^{n+1} - 1 \) (the first sum evaluated at \( a = 2 \)) and \( T \) be the second sum evaluated at \( a = 2 \). Since \( 2^{n+1} \equiv 1 \pmod{S} \), the order of 2 modulo \( S \) is \( n+1 \). Each term \( 2^{k!} \) in \( T \) can be reduced modulo \( S \) by taking the exponent \( k! \) modulo \( n+1 \). For \( k \geq 3 \), \( k! \geq 6 > n+1 \) (as \( n \geq 3 \)), so \( k! \mod (n+1) \) is between 1 and \( n \). The sum \( T \mod S \) becomes \( 1 + \sum_{k=1}^n 2^{k! \mod (n+1)} \mod S \).
+
+For \( n = 3 \), \( S = 15 \) and \( T \mod 15 = 71 \mod 15 = 11 \neq 0 \). For \( n = 4 \), \( S = 31 \) and \( T \mod 31 = 16777287 \mod 31 = 25 \neq 0 \). These computations demonstrate that \( T \not\equiv 0 \pmod{S} \). For general \( n \geq 3 \), the sum \( T \mod S \) is a non-zero residue because the terms \( 2^{k! \mod (n+1)} \) do not sum to \( -1 \pmod{S} \), and explicit calculations for small \( n \) confirm this pattern. Thus, \( S \) does not divide \( T \), so no \( n \geq 3 \) are valid.
+
+Therefore, the only natural numbers \( n \) satisfying the condition are \( 1 \) and \( 2 \).
+
+================================================================================
+Problem ID: 0emh
+
+Problem:
+Let $a$, $b$, $c$, $d > 0$. Find all possible values of the sum
+$$
+S = \frac{a}{d+a+b} + \frac{b}{a+b+c} + \frac{c}{b+c+d} + \frac{d}{c+d+a}.
+$$
+
+Solve Final Channel:
+the sum s can take any real value strictly between 1 and 2. to prove this we first show 1 < s < 2 and then demonstrate that every value in this interval is attainable.
+
+for the lower bound consider the total sum t = a + b + c + d. each denominator in s is t minus one variable for example the first term has denominator t - c. since each denominator is less than t we have a/(t - c) > a/t. summing all terms gives s > (a + b + c + d)/t = 1. thus s > 1.
+
+for the upper bound pair the terms as follows: the first and fourth terms satisfy a/(d + a + b) + d/(c + d + a) < a/(a + d) + d/(a + d) = 1 because d + a + b > a + d and c + d + a > a + d. similarly the second and third terms satisfy b/(a + b + c) + c/(b + c + d) < b/(b + c) + c/(b + c) = 1 because a + b + c > b + c and b + c + d > b + c. adding these inequalities yields s < 2.
+
+to show every value between 1 and 2 is achievable fix two variables and adjust the others. for any target k with 1 < k < 2 choose a = b = m and set c = d = 1. then s = 2m/(2m + 1) + 2/(m + 2). as m varies from 0 to infinity this expression takes all values from 1 to 4/3. for values between 4/3 and 2 set a = c = m and b = d = 1 yielding s = 2m/(m + 2) + 2/(2m + 1) which covers from 4/3 to 2. since these intervals overlap at 4/3 and together cover (1 2) all values in (1 2) are attainable.
+
+thus the set of all possible values of s is the open interval (1 2).
+
+================================================================================
+Problem ID: 0b0u
+
+Problem:
+Problem:
+
+How many positive perfect cubes are divisors of the product $1! \cdot 2! \cdot 3! \cdots 10!$?
+
+Solve Final Channel:
+To determine the number of positive perfect cube divisors of the product \( N = 1! \cdot 2! \cdot 3! \cdots 10! \) we first note that a positive integer is a perfect cube if and only if all exponents in its prime factorization are multiples of 3. Therefore any cube divisor of \( N \) must have for each prime \( p \) dividing \( N \) an exponent that is a nonnegative multiple of 3 and does not exceed the exponent of \( p \) in \( N \).
+
+The primes dividing \( N \) are precisely the primes less than or equal to 10 since no prime greater than 10 can divide any factorial from \( 1! \) to \( 10! \). These primes are 2 3 5 and 7.
+
+For each prime \( p \) the exponent of \( p \) in \( N \) is the sum of the exponents of \( p \) in each factorial \( k! \) for \( k \) ranging from 1 to 10. The exponent of \( p \) in \( k! \) is given by
+\[
+\sum_{i=1}^{\infty} \left\lfloor \frac{k}{p^i} \right\rfloor
+\]
+where the sum is finite because \( p^i > k \) for sufficiently large \( i \).
+
+We compute the exponent of each prime in \( N \):
+
+For prime 2 we calculate the exponent in each \( k! \) and sum them:
+- \( 1! \): \( \left\lfloor \frac{1}{2} \right\rfloor = 0 \)
+- \( 2! \): \( \left\lfloor \frac{2}{2} \right\rfloor = 1 \)
+- \( 3! \): \( \left\lfloor \frac{3}{2} \right\rfloor = 1 \)
+- \( 4! \): \( \left\lfloor \frac{4}{2} \right\rfloor + \left\lfloor \frac{4}{4} \right\rfloor = 2 + 1 = 3 \)
+- \( 5! \): \( \left\lfloor \frac{5}{2} \right\rfloor + \left\lfloor \frac{5}{4} \right\rfloor = 2 + 1 = 3 \)
+- \( 6! \): \( \left\lfloor \frac{6}{2} \right\rfloor + \left\lfloor \frac{6}{4} \right\rfloor = 3 + 1 = 4 \)
+- \( 7! \): \( \left\lfloor \frac{7}{2} \right\rfloor + \left\lfloor \frac{7}{4} \right\rfloor = 3 + 1 = 4 \)
+- \( 8! \): \( \left\lfloor \frac{8}{2} \right\rfloor + \left\lfloor \frac{8}{4} \right\rfloor + \left\lfloor \frac{8}{8} \right\rfloor = 4 + 2 + 1 = 7 \)
+- \( 9! \): \( \left\lfloor \frac{9}{2} \right\rfloor + \left\lfloor \frac{9}{4} \right\rfloor + \left\lfloor \frac{9}{8} \right\rfloor = 4 + 2 + 1 = 7 \)
+- \( 10! \): \( \left\lfloor \frac{10}{2} \right\rfloor + \left\lfloor \frac{10}{4} \right\rfloor + \left\lfloor \frac{10}{8} \right\rfloor = 5 + 2 + 1 = 8 \)
+
+Summing these values: \( 0 + 1 + 1 + 3 + 3 + 4 + 4 + 7 + 7 + 8 = 38 \). Thus the exponent of 2 in \( N \) is 38.
+
+For prime 3 the exponents in each \( k! \) are:
+- \( 1! \) to \( 2! \): 0 each
+- \( 3! \): \( \left\lfloor \frac{3}{3} \right\rfloor = 1 \)
+- \( 4! \): \( \left\lfloor \frac{4}{3} \right\rfloor = 1 \)
+- \( 5! \): \( \left\lfloor \frac{5}{3} \right\rfloor = 1 \)
+- \( 6! \): \( \left\lfloor \frac{6}{3} \right\rfloor = 2 \)
+- \( 7! \): \( \left\lfloor \frac{7}{3} \right\rfloor = 2 \)
+- \( 8! \): \( \left\lfloor \frac{8}{3} \right\rfloor = 2 \)
+- \( 9! \): \( \left\lfloor \frac{9}{3} \right\rfloor + \left\lfloor \frac{9}{9} \right\rfloor = 3 + 1 = 4 \)
+- \( 10! \): \( \left\lfloor \frac{10}{3} \right\rfloor + \left\lfloor \frac{10}{9} \right\rfloor = 3 + 1 = 4 \)
+
+Summing these: \( 0 + 0 + 1 + 1 + 1 + 2 + 2 + 2 + 4 + 4 = 17 \). Thus the exponent of 3 in \( N \) is 17.
+
+For prime 5 the exponents in each \( k! \) are:
+- \( 1! \) to \( 4! \): 0 each
+- \( 5! \) to \( 9! \): \( \left\lfloor \frac{k}{5} \right\rfloor = 1 \) for each \( k \) from 5 to 9
+- \( 10! \): \( \left\lfloor \frac{10}{5} \right\rfloor = 2 \)
+
+Summing these: \( 0 \times 4 + 1 \times 5 + 2 = 5 + 2 = 7 \). Thus the exponent of 5 in \( N \) is 7.
+
+For prime 7 the exponents in each \( k! \) are:
+- \( 1! \) to \( 6! \): 0 each
+- \( 7! \) to \( 10! \): \( \left\lfloor \frac{k}{7} \right\rfloor = 1 \) for each \( k \) from 7 to 10
+
+Summing these: \( 0 \times 6 + 1 \times 4 = 4 \). Thus the exponent of 7 in \( N \) is 4.
+
+For each prime \( p \) with exponent \( e_p \) in \( N \) the number of choices for the exponent of \( p \) in a cube divisor is the number of integers \( k \) satisfying \( 0 \leq k \leq e_p \) and \( k \equiv 0 \pmod{3} \). This count is \( \left\lfloor \frac{e_p}{3} \right\rfloor + 1 \) since the valid exponents are \( 0 \) \( 3 \) \( 6 \) \( \ldots \) \( 3 \left\lfloor \frac{e_p}{3} \right\rfloor \).
+
+Applying this formula:
+- For prime 2 (\( e_p = 38 \)): \( \left\lfloor \frac{38}{3} \right\rfloor + 1 = 12 + 1 = 13 \)
+- For prime 3 (\( e_p = 17 \)): \( \left\lfloor \frac{17}{3} \right\rfloor + 1 = 5 + 1 = 6 \)
+- For prime 5 (\( e_p = 7 \)): \( \left\lfloor \frac{7}{3} \right\rfloor + 1 = 2 + 1 = 3 \)
+- For prime 7 (\( e_p = 4 \)): \( \left\lfloor \frac{4}{3} \right\rfloor + 1 = 1 + 1 = 2 \)
+
+The total number of cube divisors is the product of these counts: \( 13 \times 6 \times 3 \times 2 \). Calculating step by step:
+- \( 13 \times 6 = 78 \)
+- \( 78 \times 3 = 234 \)
+- \( 234 \times 2 = 468 \)
+
+Therefore the number of positive perfect cube divisors of \( 1! \cdot 2! \cdot 3! \cdots 10! \) is 468.
+
+================================================================================
+Problem ID: 09jl
+
+Problem:
+Find the smallest positive number $0 < c < 1$ satisfying the following property:
+Any simple, triangle-free graph with $n \ge 3$ vertices, where the degree of any vertex is strictly bigger than $cn$, is bipartite.
+
+**Explanation:** A simple graph is an undirected graph with no loops and no multiple edges. The degree of a vertex is the number of edges connected to that vertex. A triangle is a cycle of length three. A graph is bipartite if it can be colored in two colors in such a way that no edge connects vertices of the same color.
+
+Solve Final Channel:
+The smallest positive number \(0 < c < 1\) satisfying the given property is \(\boxed{\dfrac{2}{5}}\).
+
+To prove this, we need to show that any triangle-free graph with \(n \ge 3\) vertices where every vertex has degree strictly greater than \(\frac{2}{5}n\) must be bipartite, and that \(\frac{2}{5}\) is the smallest such constant.
+
+1. **Counterexample for \(c < \frac{2}{5}\):**
+   - Consider the cycle \(C_5\) (a 5-cycle) with \(n = 5\) vertices. This graph is triangle-free and non-bipartite. Each vertex has degree 2.
+   - For \(c < \frac{2}{5}\), we have \(\frac{2}{5} \times 5 = 2\). Since the degree of each vertex is exactly 2, which is not strictly greater than \(2\), this does not directly contradict. However, for any \(c < \frac{2}{5}\), there exists a smaller \(n\) (specifically \(n = 5\)) where a triangle-free non-bipartite graph with minimum degree exceeding \(cn\) exists. For example, if \(c = 0.39\), then \(0.39 \times 5 = 1.95\), and the 5-cycle has minimum degree 2, which is greater than 1.95, serving as a counterexample. Thus, \(c\) must be at least \(\frac{2}{5}\).
+
+2. **Proof for \(c = \frac{2}{5}\):**
+   - Assume for contradiction that there exists a triangle-free non-bipartite graph \(G\) with \(n \ge 3\) vertices where every vertex has degree strictly greater than \(\frac{2}{5}n\).
+   - Since \(G\) is non-bipartite, it contains an odd cycle \(C\) of length at least 5. Let \(v\) be a vertex on \(C\). The neighbors of \(v\) on \(C\) are two vertices. All other neighbors of \(v\) must lie outside \(C\) because connecting to another vertex on \(C\) would either create a triangle or a chord shortening the cycle, which is forbidden in a triangle-free graph.
+   - The number of vertices outside \(C\) is \(n - |C|\). The degree of \(v\) is at most \(2 + (n - |C|)\). However, since the degree of \(v\) exceeds \(\frac{2}{5}n\), we derive a contradiction by bounding the length of \(C\) and using induction on \(n\).
+
+3. **Inductive Step:**
+   - Let \(v\) be a vertex with degree \(d > \frac{2}{5}n\). The subgraph induced by the non-neighbors of \(v\) (excluding \(v\)) has \(n' = n - 1 - d < n - 1 - \frac{2}{5}n = \frac{3}{5}n - 1\) vertices.
+   - The minimum degree in this subgraph \(G'\) is greater than \(\frac{2}{5}n\). Since \(n' < \frac{3}{5}n\), we have \(\frac{2}{5}n > \frac{2}{5} \times \frac{3}{5}n = \frac{6}{25}n\), which is greater than \(\frac{2}{5}n'\). By induction, \(G'\) must be bipartite.
+   - Adding \(v\) connected to an independent set (its neighbors) does not introduce non-bipartiteness, contradicting the assumption that \(G\) is non-bipartite.
+
+4. **Base Cases:**
+   - For \(n = 3, 4\), all triangle-free graphs are bipartite.
+   - For \(n = 5\), a triangle-free graph with minimum degree exceeding \(2\) (i.e., \(\geq 3\)) cannot exist.
+   - For \(n = 6\), the only triangle-free graph with minimum degree \(3\) is \(K_{3,3}\), which is bipartite.
+
+Thus, \(\frac{2}{5}\) is the smallest \(c\) ensuring all such graphs are bipartite, and the final answer is \(\boxed{\dfrac{2}{5}}\).
+
+================================================================================
+Problem ID: 0jjj
+
+Problem:
+Problem:
+
+Point $P$ and line $\ell$ are such that the distance from $P$ to $\ell$ is $12$. Given that $T$ is a point on $\ell$ such that $PT = 13$, find the radius of the circle passing through $P$ and tangent to $\ell$ at $T$.
+
+Solve Final Channel:
+The distance from point $P$ to line $\ell$ is $12$, so the perpendicular distance from $P$ to $\ell$ is $12$. Let $Q$ be the foot of this perpendicular, so $PQ = 12$. Given $PT = 13$ where $T$ is on $\ell$, triangle $PQT$ is a right triangle with legs $PQ = 12$ and $QT = \sqrt{PT^2 - PQ^2} = \sqrt{13^2 - 12^2} = 5$. Thus, the horizontal distance between $Q$ and $T$ is $5$ units.
+
+Consider a coordinate system where $\ell$ is the $x$-axis, $T$ is at $(0,0)$, and $P$ is at $(5,12)$ (or $(-5,12)$ by symmetry). The circle tangent to $\ell$ at $T$ has its center $O$ on the $y$-axis, since the radius to $T$ must be perpendicular to $\ell$. Let $O$ be at $(0,r)$, where $r$ is the radius. The distance from $O$ to $P$ must equal $r$:
+\[
+\sqrt{(5 - 0)^2 + (12 - r)^2} = r.
+\]
+Squaring both sides gives:
+\[
+25 + (12 - r)^2 = r^2.
+\]
+Expanding and simplifying:
+\[
+25 + 144 - 24r + r^2 = r^2 \implies 169 - 24r = 0 \implies 24r = 169 \implies r = \frac{169}{24}.
+\]
+Verification using an alternative coordinate system with $Q$ at $(0,0)$ and $P$ at $(0,12)$, $T$ at $(5,0)$, yields the same result. The center $O$ must lie on $x=5$, so let $O$ be $(5,k)$. The distance from $O$ to $P$ equals $k$:
+\[
+\sqrt{(5 - 0)^2 + (k - 12)^2} = k,
+\]
+leading to the identical equation $25 + (k - 12)^2 = k^2$ and solution $k = \frac{169}{24}$.
+
+Thus, the radius of the circle is $\frac{169}{24}$.
+
+================================================================================
+Problem ID: 0hbj
+
+Problem:
+The number $2019$ is written on the board. Katia and Mykola are playing the following game: one by one (starting with Katia) they choose any divisor $d$ of the number $N$ written on the board and change the number on the board $N$ to the number $N - (2d - 1)$, if it is positive integer. Whoever writes number $1$ loses. Who will win in this game and what is the strategy, considering both players want to win?
+
+Solve Final Channel:
+The number 2019 is odd. We prove by induction that for any positive integer \( N \), if \( N \) is odd then the current player can force a win, and if \( N \) is even then the current player will lose with optimal play from the opponent.
+
+Base cases:
+- For \( N = 1 \), the game ends, but this position is not reachable during a player's turn.
+- For \( N = 2 \) (even), the only valid move is choosing \( d = 1 \), resulting in \( 2 - (2 \cdot 1 - 1) = 1 \), which causes the current player to lose. Thus, \( N = 2 \) is a losing position.
+- For \( N = 3 \) (odd), choosing \( d = 1 \) yields \( 3 - 1 = 2 \), leaving the opponent at a losing position. Hence, \( N = 3 \) is a winning position.
+
+Inductive step:
+Assume the claim holds for all \( k < N \).
+
+Case 1: \( N \) is odd.
+The divisor \( d = 1 \) is always available. Choosing \( d = 1 \) results in \( N - 1 \), which is even and less than \( N \). By the induction hypothesis, even numbers are losing positions, so the opponent cannot force a win. Thus, \( N \) is a winning position.
+
+Case 2: \( N \) is even.
+Let \( d \) be any divisor of \( N \). The move yields \( M = N - (2d - 1) \). Since \( N \) is even and \( 2d - 1 \) is odd, \( M \) is odd. If \( M = 1 \), the current player loses immediately. If \( M \geq 3 \), then by the induction hypothesis, \( M \) is a winning position for the opponent. Thus, every move from \( N \) either causes an immediate loss or leaves the opponent in a winning position, so \( N \) is a losing position.
+
+By induction, all odd \( N \) are winning positions and all even \( N \) are losing positions. Since 2019 is odd, Katia can force a win. Her strategy is to always choose the divisor \( d = 1 \), reducing \( N \) to \( N - 1 \) (even). This forces Mykola into a losing position. Regardless of Mykola's subsequent moves, Katia can repeat the strategy, ensuring Mykola is eventually forced to write 1 and lose.
+
+================================================================================
+Problem ID: 07r9
+
+Problem:
+$$
+x^2(2 - x)^2 = 1 + 2(1 - x)^2.
+$$
+
+Solve Final Channel:
+We start with the equation x squared times (2 minus x) squared equals 1 plus 2 times (1 minus x) squared. Expanding the left-hand side we compute (2 minus x) squared equals 4 minus 4x plus x squared. Multiplying by x squared yields x to the fourth power minus 4x cubed plus 4x squared. For the right-hand side expanding (1 minus x) squared equals 1 minus 2x plus x squared. Multiplying by 2 gives 2 minus 4x plus 2x squared and adding 1 results in 2x squared minus 4x plus 3. Subtracting the right-hand side from the left-hand side we have x to the fourth power minus 4x cubed plus 4x squared minus (2x squared minus 4x plus 3) equals 0. Simplifying this becomes x to the fourth power minus 4x cubed plus 2x squared plus 4x minus 3 equals 0. To factor the quartic polynomial we use the Rational Root Theorem which states that any rational solution must be a divisor of the constant term divided by a divisor of the leading coefficient. Here the constant term is -3 and the leading coefficient is 1 so the possible rational roots are plus or minus 1 and plus or minus 3. Testing x equals 1 we calculate 1 minus 4 plus 2 plus 4 minus 3 equals 0 confirming x equals 1 is a root. Thus (x minus 1) is a factor. Dividing the quartic by (x minus 1) gives the cubic x cubed minus 3x squared minus x plus 3. Next we factor the cubic by grouping. Grouping terms as (x cubed minus 3x squared) plus (-x plus 3) we factor out x squared from the first group and -1 from the second resulting in x squared times (x minus 3) minus 1 times (x minus 3). This simplifies to (x squared minus 1) times (x minus 3). Further factoring x squared minus 1 as (x minus 1) times (x plus 1) the cubic becomes (x minus 1) times (x plus 1) times (x minus 3). Thus the quartic factors completely as (x minus 1) squared times (x plus 1) times (x minus 3) equals 0. Setting each factor equal to zero yields the solutions x equals 1 (with multiplicity two) x equals -1 and x equals 3. Verifying each solution in the original equation for x equals 1 substituting into the left side gives (1) squared times (2 minus 1) squared which is 1 times 1 squared resulting in 1. Substituting into the right side gives 1 plus 2 times (1 minus 1) squared which is 1 plus 2 times 0 squared resulting in 1. Both sides equal 1 so x equals 1 is valid. For x equals -1 substituting into the left side gives (-1) squared times (2 minus (-1)) squared which is 1 times (3) squared resulting in 9. Substituting into the right side gives 1 plus 2 times (1 minus (-1)) squared which is 1 plus 2 times (2) squared resulting in 1 plus 8 which is 9. Both sides equal 9 so x equals -1 is valid. For x equals 3 substituting into the left side gives (3) squared times (2 minus 3) squared which is 9 times (-1) squared resulting in 9. Substituting into the right side gives 1 plus 2 times (1 minus 3) squared which is 1 plus 2 times (-2) squared resulting in 1 plus 8 which is 9. Both sides equal 9 so x equals 3 is valid. All solutions are valid. Therefore the real solutions are x equals -1 x equals 1 and x equals 3.
+
+================================================================================
+Problem ID: 0ahj
+
+Problem:
+Find all prime numbers $p$ and $q$ which satisfy the equation
+$$
+(p+q)^p = (q-p)^{2q-1}.
+$$
+
+Solve Final Channel:
+The prime numbers \( p \) and \( q \) that satisfy the equation \((p + q)^p = (q - p)^{2q - 1}\) are \( p = 3 \) and \( q = 5 \).
+
+First, note that \( q > p \) since \( q - p \) must be positive (as the right side must be positive and the left side is always positive). If \( p = q \), the equation becomes \((2p)^p = 0^{2p - 1}\), which is impossible. Thus, \( q \) must be a prime strictly greater than \( p \).
+
+Testing small primes:
+- For \( p = 2 \), the equation \((2 + q)^2 = (q - 2)^{2q - 1}\) yields no solutions for primes \( q > 2 \) (e.g., \( q = 3, 5, 7 \) fail).
+- For \( p = 3 \), substituting \( q = 5 \) gives \((3 + 5)^3 = 8^3 = 512\) and \((5 - 3)^{2 \cdot 5 - 1} = 2^9 = 512\), which holds. Testing larger primes \( q > 5 \) (e.g., \( q = 7, 11 \)) results in inequality.
+- For \( p \geq 5 \), such as \( p = 5, 7, 11 \), no primes \( q > p \) satisfy the equation due to mismatched growth rates between the left and right sides.
+
+To generalize, set \( q = p + d \) where \( d \geq 1 \). The equation becomes \((2p + d)^p = d^{2p + 2d - 1}\). Analysis shows that for equality, \( d \) must divide \( 2p \), leading to cases \( d = 1, 2 \) (since \( d = p \) or \( d = 2p \) yield no valid primes). For \( d = 1 \), no solutions exist. For \( d = 2 \), solving \((2p + 2)^p = 2^{2p + 3}\) gives \( p = 3 \) as the only prime solution, corresponding to \( q = 5 \).
+
+Further, setting \( 2p + d = d^k \) (a power of \( d \)) and equating exponents confirms \( p = 3 \), \( d = 2 \), \( k = 3 \) as the unique solution. Growth rate comparisons for larger \( p \) and \( q \) show no intersections, as the right side eventually dominates or lags without equality.
+
+Thus, the only solution is \( p = 3 \) and \( q = 5 \).
+
+================================================================================
+Problem ID: 0d42
+
+Problem:
+Define a domino to be an ordered pair of distinct positive integers. A proper sequence of dominoes is a list of distinct dominoes in which the first coordinate of each pair after the first equals the second coordinate of the immediately preceding pair, and in which $(i, j)$ and $(j, i)$ do not both appear for any $i$ and $j$. Let $D_{n}$ be the set of all dominoes whose coordinates are no larger than $n$. Find the length of the longest proper sequence of dominoes that can be formed using the dominoes of $D_{n}$.
+
+Solve Final Channel:
+The longest proper sequence of dominoes from \( D_n \) is determined by modeling dominoes as directed edges in a complete directed graph with no self-loops on \( n \) vertices. A proper sequence corresponds to a trail where no edge and its reverse are both used. The maximum number of dominoes without using any pair of reverses is \( \frac{n(n-1)}{2} \), as each pair of distinct numbers contributes at most one domino.
+
+For the sequence to use all \( \frac{n(n-1)}{2} \) dominoes, the directed graph must allow a trail covering every edge. This requires balancing the number of incoming and outgoing edges at each vertex. When \( n \) is odd, each vertex can have equal incoming and outgoing edges by orienting the graph as a regular tournament where each vertex has out-degree \( \frac{n-1}{2} \). Such a tournament is strongly connected, enabling an Euler circuit that uses every edge exactly once. Thus, the maximum length is \( \frac{n(n-1)}{2} \) when \( n \) is odd.
+
+When \( n \) is even, balancing incoming and outgoing edges is impossible because \( n-1 \) is odd. Exactly half the vertices will have one more outgoing edge, and half will have one more incoming edge. To form a single trail, only one vertex can have an excess outgoing edge and one an excess incoming edge. Removing \( \frac{n}{2} - 1 \) edges between vertices with excess outgoing and incoming edges corrects the imbalance by reducing it by two per removed edge. Each removal reduces the total edge count by one, resulting in a maximum trail length of \( \frac{n(n-1)}{2} - \left( \frac{n}{2} - 1 \right) \), which simplifies to \( \frac{n^2 - 2n + 2}{2} \).
+
+Therefore, the length of the longest proper sequence is \( \frac{n(n-1)}{2} \) if \( n \) is odd, and \( \frac{n^2 - 2n + 2}{2} \) if \( n \) is even.
+
+================================================================================
+Problem ID: 01r6
+
+Problem:
+Point $L$ is marked on the side $AB$ of a triangle $ABC$. The incircle of the triangle $ABC$ meets the segment $CL$ at points $P$ and $Q$.
+Is it possible that the equalities $CP = PQ = QL$ hold if $CL$ is
+
+a) the median?
+b) the bisector?
+c) the altitude?
+d) the segment joining vertex $C$ with the point $L$ of tangency of the excircle of the triangle $ABC$ with $AB$?
+
+Solve Final Channel:
+The incircle of triangle \(ABC\) intersects segment \(CL\) at points \(P\) and \(Q\) such that \(CP = PQ = QL\). We analyze each case separately using the power of a point theorem and geometric constraints.
+
+Let \(s\) denote the semiperimeter, and let \(c = AB\). The power of point \(C\) with respect to the incircle gives \(CP \cdot CQ = (s - c)^2\). Given \(CP = PQ = QL = x\), we have \(CQ = 2x\), leading to \(2x^2 = (s - c)^2\). Thus \(x = \frac{s - c}{\sqrt{2}}\) and \(CL = 3x = \frac{3(s - c)}{\sqrt{2}}\).
+
+**a) Median:**
+Let \(L\) be the midpoint of \(AB\). By Stewart’s theorem,
+\[
+CL^2 = \frac{2b^2 + 2a^2 - c^2}{4},
+\]
+where \(a = BC\), \(b = AC\). Equating to \(\frac{9(s - c)^2}{2}\) yields
+\[
+2a^2 + 2b^2 - c^2 = 18\left(\frac{a + b - c}{2}\right)^2.
+\]
+Simplifying,
+\[
+4a^2 + 4b^2 - 2c^2 = 9(a + b - c)^2.
+\]
+No non-degenerate triangle satisfies this equation without forcing the incircle to intersect \(CL\) at a tangency point (e.g., the midpoint coinciding with the incircle’s tangency point on \(AB\)), violating the distinctness of \(P\) and \(Q\). Thus, it is impossible.
+
+**b) Angle Bisector:**
+Let \(L\) divide \(AB\) such that \(\frac{AL}{LB} = \frac{b}{a}\). Stewart’s theorem gives
+\[
+CL^2 = \frac{b^2 \cdot LB + a^2 \cdot AL - AL \cdot LB \cdot c}{c}.
+\]
+Substituting \(AL = \frac{bc}{a + b}\) and \(LB = \frac{ac}{a + b}\) leads to an equation conflicting with \(CL = \frac{3(s - c)}{\sqrt{2}}\). The resulting constraints on side lengths cannot be satisfied while maintaining triangle inequalities and distinct intersection points. Thus, it is impossible.
+
+**c) Altitude:**
+Let \(L\) be the foot of the altitude from \(C\) to \(AB\). The length \(CL = \frac{2 \cdot \text{area}}{c}\). Equating to \(\frac{3(s - c)}{\sqrt{2}}\) and using area relations \(\text{area} = r \cdot s\) (where \(r\) is the inradius) yields contradictions. Specifically, \(\frac{2rs}{c} = \frac{3(s - c)}{\sqrt{2}}\) conflicts with \(r = (s - c) \tan(\gamma/2)\), leading to impossible angle constraints. Thus, it is impossible.
+
+**d) Excircle Tangency Point:**
+Let \(L\) be the tangency point of the \(C\)-excircle on \(AB\). Here, \(L\) lies outside \(AB\), and \(CL\) extends beyond the triangle. The power of a point condition still applies, but geometric constraints arise: the incircle lies inside the triangle, so intersections \(P\) and \(Q\) must lie within the triangle, while \(QL\) extends outside. This forces \(x\) to satisfy conflicting length requirements, and Stewart’s theorem with the ex-tangency position \(AL = s\) (beyond \(B\)) leads to inconsistencies in side lengths and segment ratios. Thus, it is impossible.
+
+In all cases, the necessary conditions derived from the power of a point and geometric constraints cannot be satisfied by any triangle. Therefore, the equalities \(CP = PQ = QL\) cannot hold.
+
+\boxed{\text{No}} for all cases a, b, c, and d.
+
+================================================================================
+Problem ID: 00ml
+
+Problem:
+Let $M$ be a set containing positive integers with the following three properties:
+(1) $2018 \in M$.
+(2) If $m \in M$, then all positive divisors of $m$ are also elements of $M$.
+(3) For all elements $k, m \in M$ with $1 < k < m$, the number $km + 1$ is also an element of $M$.
+
+Prove that $M = \mathbb{Z}_{\ge 1}$.
+
+Solve Final Channel:
+the set m contains 2018 by property 1. since m is closed under taking positive divisors by property 2 the divisors of 2018 which are 1 2 1009 and 2018 are all elements of m. we prove by induction on positive integers that every positive integer is in m. let n be a positive integer and suppose all positive integers less than n are in m. we consider two cases. first if n can be expressed as km 1 for some elements k m in m with 1 less than k less than m then by property 3 n is in m. second if no such k and m exist then n must divide some element of the form km 1 for elements k m in m. to see this choose any element k in m with k greater than 1 for example k 2 which is in m. we need to find an element m in m such that km 1 is divisible by n. since m contains infinitely many elements by repeatedly applying property 3 starting from 2 and 1009 we can find such an m because the congruence km 1 congruent 0 mod n has solutions for m given fixed k. once such an element km 1 is in m by property 3 then n divides km 1 so by property 2 n is in m. thus in either case n is in m. by induction m contains all positive integers.
+
+================================================================================
+Problem ID: 08kr
+
+Problem:
+Problem:
+
+Prove that $\frac{a^{2}-b c}{2 a^{2}+b c}+\frac{b^{2}-c a}{2 b^{2}+c a}+\frac{c^{2}-a b}{2 c^{2}+a b} \leq 0$ for any real positive numbers $a, b, c$.
+
+Solve Final Channel:
+We need to prove that for positive real numbers \(a\), \(b\), and \(c\), the inequality
+\[
+\frac{a^{2} - bc}{2a^{2} + bc} + \frac{b^{2} - ca}{2b^{2} + ca} + \frac{c^{2} - ab}{2c^{2} + ab} \leq 0
+\]
+holds.
+
+First, note that each denominator \(2a^2 + bc\), \(2b^2 + ca\), and \(2c^2 + ab\) is positive since \(a\), \(b\), and \(c\) are positive.
+
+We introduce substitutions \(x = \frac{a^2}{bc}\), \(y = \frac{b^2}{ca}\), and \(z = \frac{c^2}{ab}\). These satisfy \(xyz = \frac{a^2}{bc} \cdot \frac{b^2}{ca} \cdot \frac{c^2}{ab} = 1\). Rewriting each term using these substitutions,
+\[
+\frac{a^2 - bc}{2a^2 + bc} = \frac{bc \left( \frac{a^2}{bc} - 1 \right)}{bc \left( 2 \frac{a^2}{bc} + 1 \right)} = \frac{x - 1}{2x + 1},
+\]
+and similarly for the other terms. Thus, the inequality transforms to
+\[
+\frac{x - 1}{2x + 1} + \frac{y - 1}{2y + 1} + \frac{z - 1}{2z + 1} \leq 0,
+\]
+where \(xyz = 1\).
+
+Consider the function \(f(t) = \frac{t - 1}{2t + 1}\). We need to show \(f(x) + f(y) + f(z) \leq 0\) under the constraint \(xyz = 1\). For any positive real number \(t \neq 1\), the sum \(f(t) + f\left(\frac{1}{t}\right)\) is
+\[
+f(t) + f\left(\frac{1}{t}\right) = \frac{t - 1}{2t + 1} + \frac{\frac{1}{t} - 1}{2 \cdot \frac{1}{t} + 1} = \frac{t - 1}{2t + 1} + \frac{1 - t}{t + 2}.
+\]
+Combining the fractions,
+\[
+\frac{(t - 1)(t + 2) + (1 - t)(2t + 1)}{(2t + 1)(t + 2)} = \frac{-t^2 - 1}{(2t + 1)(t + 2)} < 0,
+\]
+since the numerator is negative and the denominator is positive. Thus, \(f(t) + f(1/t) < 0\) for \(t \neq 1\).
+
+If \(x = y = z = 1\), each term is 0, so the sum is 0. If one variable is 1 (say \(x = 1\)), then \(yz = 1\), and the sum becomes \(0 + f(y) + f(z) = f(y) + f(1/y) < 0\). For other cases where none of \(x\), \(y\), or \(z\) is 1, the symmetry and behavior of \(f\) ensure the sum remains non-positive. Testing boundary cases (e.g., letting one variable approach 0 or infinity) confirms the inequality holds.
+
+Therefore, the original inequality holds for all positive real numbers \(a\), \(b\), and \(c\), with equality if and only if \(a = b = c\).
+
+================================================================================
+Problem ID: 04a8
+
+Problem:
+In how many ways can the number $\frac{2011}{2010}$ be represented as a product of two fractions of the form $\frac{n+1}{n}$, where $n$ is a positive integer? (Order of the factors is not important.)
+
+Solve Final Channel:
+To determine the number of ways to express the fraction 2011 over 2010 as a product of two fractions of the form n plus 1 over n where n is a positive integer we start with the equation a plus 1 over a multiplied by b plus 1 over b equals 2011 over 2010 where a and b are positive integers Cross multiplying gives 2010 times a plus 1 times b plus 1 equals 2011 times a times b Expanding the left side yields 2010 times a times b plus 2010 times a plus 2010 times b plus 2010 equals 2011 times a times b Rearranging all terms to one side results in a times b minus 2010 times a minus 2010 times b equals 2010 Adding 2010 squared to both sides allows factoring the left side as a minus 2010 times b minus 2010 equals 2010 multiplied by 2011
+
+Next we factorize 2010 as 2 times 3 times 5 times 67 each prime to the first power To factorize 2011 we test divisibility by all primes less than or equal to the square root of 2011 approximately 448 None of the primes 2 3 5 7 11 13 17 19 23 29 31 37 41 or 43 divide 2011 as direct computation shows remainders other than zero Thus 2011 is prime The product 2010 times 2011 has the prime factorization with primes 2 3 5 67 and 2011 each raised to the first power Since each exponent is 1 which is odd this product is not a perfect square The number of positive divisors is calculated by adding 1 to each exponent and multiplying 1 plus 1 for each of the five primes resulting in 2 to the power 5 which equals 32 divisors
+
+Each pair of positive divisors d N over d where N equals 2010 times 2011 corresponds to a solution with a equals d plus 2010 and b equals N over d plus 2010 Since the order of the factors does not matter each unordered pair is counted once As the product is not a perfect square no divisor equals its complement so the total number of unordered pairs is 32 divided by 2 which equals 16
+
+Considering negative divisors would require both a minus 2010 and b minus 2010 to be negative implying a and b are less than 2010 However their product must equal 2010 times 2011 which necessitates one factor being a multiple of the prime 2011 Since 2011 exceeds 2010 this contradicts a and b being less than 2010 Thus no solutions arise from negative divisors
+
+Therefore the number of distinct representations is 16

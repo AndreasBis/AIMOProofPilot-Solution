@@ -1,0 +1,34 @@
+[
+  {
+    "id": "m1",
+    "problem_markdown": "Prove that $a=a$.",
+    "solutions_markdown": [
+      "This follows by equality."
+    ],
+    "images": [],
+    "country": "US",
+    "competition": "IMO",
+    "topics_flat": [
+      "algebra"
+    ],
+    "language": "English",
+    "problem_type": "proof only",
+    "final_answer": "\\boxed{1}"
+  },
+  {
+    "id": "m2",
+    "problem_markdown": "Show that $b=b$.",
+    "solutions_markdown": [
+      "This follows by equality."
+    ],
+    "images": [],
+    "country": "GR",
+    "competition": "BMO",
+    "topics_flat": [
+      "number theory"
+    ],
+    "language": "English",
+    "problem_type": "proof and answer",
+    "final_answer": "2"
+  }
+]

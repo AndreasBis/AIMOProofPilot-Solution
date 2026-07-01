@@ -1,0 +1,17 @@
+{
+  "choices": [
+    {
+      "text": "The answer is \\boxed{4}.",
+      "token_ids": [
+        41,
+        42,
+        43
+      ],
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 8,
+    "completion_tokens": 3
+  }
+}

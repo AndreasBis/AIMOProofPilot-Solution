@@ -1,0 +1,6 @@
+data/
+output/
+venv-container/
+venv-local/
+__pycache__/
+*.sif

@@ -1,0 +1,57 @@
+================================================================================
+Problem ID: 0dwr
+
+Problem:
+Problem:
+
+Za katera praštevila $p$ in $q$ je število $(p+1)^{q}$ popolni kvadrat?
+
+Solve Final Channel:
+The problem requires determining all prime numbers \( p \) and \( q \) such that \( (p + 1)^q \) is a perfect square. We proceed as follows:
+
+Let \( p \) and \( q \) be primes with \( (p + 1)^q = n^2 \) for some integer \( n \geq 1 \). Consider the prime factorization of \( p + 1 \), written as \( p + 1 = \prod_{i=1}^k a_i^{b_i} \), where each \( a_i \) is prime and each \( b_i \) is a positive integer. Then,
+
+\[
+(p + 1)^q = \prod_{i=1}^k a_i^{b_i q}.
+\]
+
+Since \( n^2 \) must equal this product, its prime factorization \( n = \prod_{j=1}^m c_j^{d_j} \) implies \( n^2 = \prod_{j=1}^m c_j^{2d_j} \). For these factorizations to be equal, the sets of primes \( \{a_1, \ldots, a_k\} \) and \( \{c_1, \ldots, c_m\} \) must coincide, and for each prime \( a_i \), the exponent \( b_i q \) must equal \( 2d_j \) for some \( d_j \). Thus, \( b_i q \) must be even for all \( i \).
+
+We analyze cases based on the prime \( q \).
+
+**Case 1: \( q = 2 \).**
+Here, \( b_i \cdot 2 \) is even for any integer \( b_i \). Therefore, \( (p + 1)^2 \) is a perfect square for any prime \( p \). Hence, all pairs \( (p, 2) \) with \( p \) prime are solutions.
+
+**Case 2: \( q \) is an odd prime (so \( q \geq 3 \)).**
+Since \( q \) is odd, \( b_i q \) is even if and only if \( b_i \) is even for all \( i \). This requires every exponent in the prime factorization of \( p + 1 \) to be even, meaning \( p + 1 \) is a perfect square. Let \( p + 1 = m^2 \) for some integer \( m \geq 2 \) (as \( p \geq 2 \) implies \( p + 1 \geq 3 \)). Then,
+
+\[
+p = m^2 - 1 = (m - 1)(m + 1).
+\]
+
+Since \( p \) is prime, the product \( (m - 1)(m + 1) \) must be prime. A prime has exactly two distinct positive divisors, so one factor must equal 1. If \( m - 1 = 1 \), then \( m = 2 \), yielding \( p = 1 \cdot 3 = 3 \), which is prime. If \( m + 1 = 1 \), then \( m = 0 \), giving \( p = -1 \), which is not prime. Thus, the only solution is \( p = 3 \). For this \( p \), and any odd prime \( q \), \( (3 + 1)^q = 4^q = (2^2)^q = 2^{2q} \) is a perfect square since \( 2q \) is even.
+
+**Conclusion:**
+The solutions are all pairs of primes \( (p, q) \) where either \( q = 2 \) (with \( p \) any prime) or \( p = 3 \) (with \( q \) any prime). No other pairs satisfy the condition, as any other choice either violates the primality of \( p \) or results in a non-square exponent.
+
+================================================================================
+Problem ID: 0a0g
+
+Problem:
+Problem:
+
+Zij $n \geq 1$ een geheel getal. Ruben maakt een toets met $n$ vragen. Elke vraag op deze toets is een ander aantal punten waard. De eerste vraag is 1 punt waard, de tweede vraag 2, de derde 3 en zo door tot en met de laatste vraag die $n$ punten waard is. Elke vraag is goed of fout. Voor een vraag krijgt hij dus óf geen, óf alle punten. Zij $f(n)$ het aantal manieren waarop hij de toets kan maken zodat het aantal punten dat hij gehaald heeft gelijk is aan het aantal vragen dat hij fout had.
+Onderzoek of er oneindig veel paren $(a, b)$ bestaan met $a<b$ en $f(a)=f(b)$.
+
+Solve Final Channel:
+Zij $n \geq 1$ een geheel getal. De functie $f(n)$ telt het aantal manieren waarop Ruben de toets met $n$ vragen kan maken zodat het aantal behaalde punten gelijk is aan het aantal vragen die hij fout heeft. Voor elk vraag $i$ (waar $1 \leq i \leq n$) worden $i$ punten behaald indien het antwoord correct is, en $0$ punten indien het antwoord fout is. Het aantal vragen dat hij fout heeft is $n - k$, waarbij $k$ het aantal correcte antwoorden is. De vergelijking is dus $\sum_{i \in S} i = n - |S|$, waarbij $S$ het subset van correcte vragen is. Dit kan worden herarrangeerd tot $\sum_{i \in S} (i + 1) = n$, waarbij de elementen $i + 1$ behoren tot $\{2, 3, \dots, n + 1\}$. Omdat de som $n$ is, kunnen alleen elementen tot $n$ worden gebruikt, dus $f(n)$ is het aantal subsets van $\{2, 3, \dots, n\}$ die summen naar $n$.
+
+De functie $f(n)$ is dus gelijk aan het aantal partitions van $n$ in onderscheidbare delen $\geq 2$. Deze partitiefunctie, aangeduid als $g(n)$, volgt de recursie $g(n) = p_{\text{dist}}(n) - g(n-1)$ met $g(1) = 0$, waarbij $p_{\text{dist}}(n)$ het aantal partitions van $n$ in onderscheidbare delen is.
+
+Om te bepalen of er oneindig veel paren $(a, b)$ met $a < b$ en $f(a) = f(b)$ bestaan, wordt de groei van $g(n)$ geanalyseerd. De partitiefunctie $p_{\text{dist}}(n)$ groeit super-exponentieel in $\sqrt{n}$, en $g(n) \approx \frac{1}{2} p_{\text{dist}}(n)$ voor grote $n$. Dit leidt tot $g(n+1) - g(n) = p_{\text{dist}}(n+1) - 2g(n)$. Omdat $p_{\text{dist}}(n)$ sneller groeit dan $g(n)$, is $g(n)$ uiteindelijk strikt toeneemend voor voldoende grote $n$.
+
+Aangezien $g(n)$ uiteindelijk strikt toeneemend is, zijn alle waarden $g(n)$ voor $n \geq N$ uniek voor zekere $N$. Hierdoor bestaan er slechts een eindig aantal paren $(a, b)$ met $a < b$ en $f(a) = f(b)$.
+
+Conclusie: Er bestaan niet oneindig veel dergelijke paren.
+
+\boxed{\text{Nee}}

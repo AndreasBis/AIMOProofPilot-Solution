@@ -1,0 +1,204 @@
+{
+  "problem_count": 16,
+  "output_path": "/workspace/output/runpod/aimo_proof_outputs.txt",
+  "totals": {
+    "input_tokens": 7570,
+    "generated_tokens": 233468,
+    "total_tokens": 241038,
+    "elapsed_seconds": 11921.263858556747
+  },
+  "problems": [
+    {
+      "id": "0dwr",
+      "passes": [
+        {
+          "name": "solve",
+          "elapsed_seconds": 239.44353723526,
+          "input_tokens": 426,
+          "generated_tokens": 4803,
+          "total_tokens": 5229
+        }
+      ]
+    },
+    {
+      "id": "0a0g",
+      "passes": [
+        {
+          "name": "solve",
+          "elapsed_seconds": 1888.753611087799,
+          "input_tokens": 583,
+          "generated_tokens": 36465,
+          "total_tokens": 37048
+        }
+      ]
+    },
+    {
+      "id": "0bro",
+      "passes": [
+        {
+          "name": "solve",
+          "elapsed_seconds": 769.262969493866,
+          "input_tokens": 450,
+          "generated_tokens": 15091,
+          "total_tokens": 15541
+        }
+      ]
+    },
+    {
+      "id": "0dmr",
+      "passes": [
+        {
+          "name": "solve",
+          "elapsed_seconds": 673.4606583118439,
+          "input_tokens": 514,
+          "generated_tokens": 13236,
+          "total_tokens": 13750
+        }
+      ]
+    },
+    {
+      "id": "0emh",
+      "passes": [
+        {
+          "name": "solve",
+          "elapsed_seconds": 525.1660373210907,
+          "input_tokens": 456,
+          "generated_tokens": 10371,
+          "total_tokens": 10827
+        }
+      ]
+    },
+    {
+      "id": "0b0u",
+      "passes": [
+        {
+          "name": "solve",
+          "elapsed_seconds": 716.798942565918,
+          "input_tokens": 421,
+          "generated_tokens": 14081,
+          "total_tokens": 14502
+        }
+      ]
+    },
+    {
+      "id": "09jl",
+      "passes": [
+        {
+          "name": "solve",
+          "elapsed_seconds": 888.1591980457306,
+          "input_tokens": 510,
+          "generated_tokens": 17375,
+          "total_tokens": 17885
+        }
+      ]
+    },
+    {
+      "id": "0jjj",
+      "passes": [
+        {
+          "name": "solve",
+          "elapsed_seconds": 270.61348724365234,
+          "input_tokens": 457,
+          "generated_tokens": 5429,
+          "total_tokens": 5886
+        }
+      ]
+    },
+    {
+      "id": "0hbj",
+      "passes": [
+        {
+          "name": "solve",
+          "elapsed_seconds": 582.0240857601166,
+          "input_tokens": 494,
+          "generated_tokens": 11468,
+          "total_tokens": 11962
+        }
+      ]
+    },
+    {
+      "id": "07r9",
+      "passes": [
+        {
+          "name": "solve",
+          "elapsed_seconds": 345.7069709300995,
+          "input_tokens": 413,
+          "generated_tokens": 6894,
+          "total_tokens": 7307
+        }
+      ]
+    },
+    {
+      "id": "0ahj",
+      "passes": [
+        {
+          "name": "solve",
+          "elapsed_seconds": 578.7513930797577,
+          "input_tokens": 423,
+          "generated_tokens": 11412,
+          "total_tokens": 11835
+        }
+      ]
+    },
+    {
+      "id": "0d42",
+      "passes": [
+        {
+          "name": "solve",
+          "elapsed_seconds": 745.0805060863495,
+          "input_tokens": 515,
+          "generated_tokens": 14617,
+          "total_tokens": 15132
+        }
+      ]
+    },
+    {
+      "id": "01r6",
+      "passes": [
+        {
+          "name": "solve",
+          "elapsed_seconds": 1285.6981358528137,
+          "input_tokens": 501,
+          "generated_tokens": 24998,
+          "total_tokens": 25499
+        }
+      ]
+    },
+    {
+      "id": "00ml",
+      "passes": [
+        {
+          "name": "solve",
+          "elapsed_seconds": 1138.9938147068024,
+          "input_tokens": 498,
+          "generated_tokens": 22192,
+          "total_tokens": 22690
+        }
+      ]
+    },
+    {
+      "id": "08kr",
+      "passes": [
+        {
+          "name": "solve",
+          "elapsed_seconds": 880.2623631954193,
+          "input_tokens": 468,
+          "generated_tokens": 17226,
+          "total_tokens": 17694
+        }
+      ]
+    },
+    {
+      "id": "04a8",
+      "passes": [
+        {
+          "name": "solve",
+          "elapsed_seconds": 393.08814764022827,
+          "input_tokens": 441,
+          "generated_tokens": 7810,
+          "total_tokens": 8251
+        }
+      ]
+    }
+  ]
+}

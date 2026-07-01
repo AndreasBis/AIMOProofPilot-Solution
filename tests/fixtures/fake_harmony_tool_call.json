@@ -1,0 +1,5 @@
+{
+  "channel": "analysis",
+  "recipient": "python",
+  "content": "print(2 + 2)"
+}

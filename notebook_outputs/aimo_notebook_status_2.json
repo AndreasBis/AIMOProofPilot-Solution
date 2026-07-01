@@ -1,0 +1,50 @@
+{
+  "problem_count": 2,
+  "output_path": "/workspace/output/runpod/aimo_proof_outputs.txt",
+  "totals": {
+    "input_tokens": 3064,
+    "generated_tokens": 60752,
+    "total_tokens": 63816,
+    "elapsed_seconds": 3109.756078004837
+  },
+  "problems": [
+    {
+      "id": "0dwr",
+      "passes": [
+        {
+          "name": "solve",
+          "elapsed_seconds": 367.01084423065186,
+          "input_tokens": 334,
+          "generated_tokens": 7283,
+          "total_tokens": 7617
+        },
+        {
+          "name": "audit",
+          "elapsed_seconds": 430.3203876018524,
+          "input_tokens": 1250,
+          "generated_tokens": 8468,
+          "total_tokens": 9718
+        }
+      ]
+    },
+    {
+      "id": "0a0g",
+      "passes": [
+        {
+          "name": "solve",
+          "elapsed_seconds": 1340.699238538742,
+          "input_tokens": 491,
+          "generated_tokens": 26058,
+          "total_tokens": 26549
+        },
+        {
+          "name": "audit",
+          "elapsed_seconds": 971.7256076335907,
+          "input_tokens": 989,
+          "generated_tokens": 18943,
+          "total_tokens": 19932
+        }
+      ]
+    }
+  ]
+}

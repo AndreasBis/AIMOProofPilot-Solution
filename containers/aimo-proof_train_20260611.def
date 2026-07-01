@@ -1,0 +1,91 @@
+Bootstrap: docker
+From: pytorch/pytorch:2.9.1-cuda13.0-cudnn9-devel
+
+%files
+    requirements_container.txt /app/requirements_container.txt
+    venv-container/tiktoken_encodings /app/tiktoken_encodings
+    src /app/src
+    app/train.py /app/train.py
+    app/upload.py /app/upload.py
+
+%post
+    export DEBIAN_FRONTEND=noninteractive
+    apt-get update
+    apt-get install -y --no-install-recommends build-essential ca-certificates curl git python3-dev texlive-latex-base texlive-latex-recommended texlive-fonts-recommended poppler-utils
+    rm -rf /var/lib/apt/lists/*
+    python -m pip install --upgrade pip setuptools wheel
+    python -m pip install --no-cache-dir -r /app/requirements_container.txt
+    chmod 755 /app/train.py
+    chmod 755 /app/upload.py
+    mkdir -p /tmp/aimo-cache /logs /output /input /weights
+
+%environment
+    export PYTHONPATH=/app/src
+    export AIMO_MODE=singularity
+    export AIMO_RUNTIME_MODE=singularity
+    export AIMO_PACKAGE_VERSION=2026-06-11
+    export AIMO_DUMMY_TEST="${AIMO_DUMMY_TEST:-true}"
+    export TOKENIZERS_PARALLELISM=false
+    export TRANSFORMERS_NO_TF=1
+    export TRANSFORMERS_NO_FLAX=1
+    export VLLM_DO_NOT_TRACK=1
+    export VLLM_NO_USAGE_STATS=1
+    export VLLM_USE_V2_MODEL_RUNNER=1
+    export XDG_CACHE_HOME="${XDG_CACHE_HOME:-/tmp/aimo-cache}"
+    export HF_HOME="${HF_HOME:-/tmp/aimo-cache/huggingface}"
+    export TRANSFORMERS_CACHE="${TRANSFORMERS_CACHE:-/tmp/aimo-cache/huggingface/transformers}"
+    export HUGGINGFACE_HUB_CACHE="${HUGGINGFACE_HUB_CACHE:-/tmp/aimo-cache/huggingface/hub}"
+    export TORCH_HOME="${TORCH_HOME:-/tmp/aimo-cache/torch}"
+    export TRITON_CACHE_DIR="${TRITON_CACHE_DIR:-/tmp/aimo-cache/triton}"
+    export VLLM_CACHE_ROOT="${VLLM_CACHE_ROOT:-/tmp/aimo-cache/vllm}"
+    export TIKTOKEN_ENCODINGS_BASE="${TIKTOKEN_ENCODINGS_BASE:-/app/tiktoken_encodings}"
+
+%test
+    PYTHONPATH=/app/src python - <<'PY'
+from aimo_training.config import AIMOTrainingConfig
+from aimo_training.entrypoints.train import main
+
+assert AIMOTrainingConfig.build_argument_parser() is not None
+assert main is not None
+PY
+
+%runscript
+    export PYTHONPATH=/app/src
+    train_node_count="${AIMO_TRAIN_NNODES:-1}"
+    train_node_rank="${AIMO_TRAIN_NODE_RANK:-0}"
+    train_master_addr="${AIMO_TRAIN_MASTER_ADDR:-${MASTER_ADDR:-127.0.0.1}}"
+    train_master_port="${AIMO_TRAIN_MASTER_PORT:-${MASTER_PORT:-29500}}"
+    train_processes_per_node="${AIMO_TRAIN_NPROC_PER_NODE:-${AIMO_NUM_GPUS:-${NUM_GPUS:-1}}}"
+    training_role="${AIMO_TRAINING_ROLE:-}"
+
+    previous_arg=""
+
+    for arg in "$@"; do
+        if [ "$previous_arg" = "--role" ]; then
+            training_role="$arg"
+            break
+        fi
+
+        previous_arg="$arg"
+    done
+
+    if [ "$training_role" = "rollout_server" ] || [ "$training_role" = "judge_server" ]; then
+        exec python /app/train.py "$@"
+    fi
+
+    if [ "$training_role" = "controller" ] || [ -z "$training_role" ]; then
+        exec python /app/train.py "$@"
+    fi
+
+    if [ "$train_node_count" != "1" ]; then
+        if [ -z "${AIMO_TRAIN_NNODES:-}" ] || [ -z "${AIMO_TRAIN_NODE_RANK:-}" ] || [ -z "${AIMO_TRAIN_MASTER_ADDR:-}" ] || [ -z "${AIMO_TRAIN_MASTER_PORT:-}" ]; then
+            echo "AIMO_TRAIN_NNODES, AIMO_TRAIN_NODE_RANK, AIMO_TRAIN_MASTER_ADDR, and AIMO_TRAIN_MASTER_PORT are required for multi-node train_update." >&2
+            exit 2
+        fi
+    fi
+
+    if [ "$training_role" = "train_update" ] && { [ "$train_processes_per_node" != "1" ] || [ "$train_node_count" != "1" ]; }; then
+        exec torchrun --nnodes "$train_node_count" --node-rank "$train_node_rank" --master-addr "$train_master_addr" --master-port "$train_master_port" --nproc-per-node "$train_processes_per_node" /app/train.py "$@"
+    fi
+
+    exec python /app/train.py "$@"
