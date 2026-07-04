@@ -70,6 +70,10 @@ AIMOProofPilot/
 |       |-- aimo_proof_eval_reference.parquet
 |       |-- aimo_proof_train.parquet
 |       `-- aimo_judge_train.parquet
+|-- reports/
+|   |-- README.md
+|   |-- stage_1.tex
+|   `-- stage_2.tex
 |-- src/
 |   |-- README.md
 |   |-- aimo_data/
@@ -115,6 +119,8 @@ AIMOProofPilot/
 
 `output/data/` contains the derived proof and judge datasets used by the local pipeline. `data/` contains the source MathNet-style dataset tree and supporting assets.
 
+`reports/` contains the AIMO Proof Pilot staged report fragments. `stage_1.tex` narrates the full experimental process, including model selection, dataset selection, RLAIF engineering, dead ends, and human interventions. `stage_2.tex` records the final linear Kaggle submission pipeline and links to the final Kaggle artifacts. `reports/README.md` shows how to render the fragments locally.
+
 ## Tests
 
 The remaining test suite is scoped to the Python modules under `src/`.
@@ -127,8 +133,10 @@ The suite covers data building, inference clients, prompt templates, page counti
 
 ## Documentation Index
 
-- `REPORT.md`: final project report narrative.
 - `CHANGELOG.md`: dated project versions.
+- `reports/README.md`: local rendering commands for the staged report fragments.
+- `reports/stage_1.tex`: stage 1 full-process report.
+- `reports/stage_2.tex`: stage 2 final-pipeline report.
 - `src/README.md`: detailed source-package usage.
 - `tests/README.md`: test-scope notes.
 - `kaggle/README.md`: Kaggle notebook roles.

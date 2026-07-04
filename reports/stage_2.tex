@@ -1,0 +1,48 @@
+\section*{Final Pipeline}
+
+\begingroup
+\sloppy
+
+\begin{enumerate}
+\item \textbf{(human) Stage the contestant checkpoint for offline Kaggle inference.}
+
+\textbf{Inputs.} The contestant model is \texttt{OLMo-3.1-32B-Think}, available at \url{https://huggingface.co/allenai/Olmo-3.1-32B-Think}. The code used to stage it is in the repository at \url{https://github.com/AndreasBis/AIMOProofPilot-Solution/blob/main/utils/colab_hf_to_kaggle_olmo_upload.ipynb}. No HuggingFace repository is attached for produced model weights, because this pipeline did not train or publish any new model weights.
+
+Run the staging notebook so that the model weights are available to the Kaggle submission notebook without network access. The final notebook expects the staged checkpoint at \path{/kaggle/input/datasets/andreasbis/olmo-3-1-32b-think}.
+
+\textbf{Outputs.} The output is the staged Kaggle model directory consumed by the final notebook. No fine-tuned adapter or additional checkpoint is produced, because the final submitted system uses the staged base checkpoint directly.
+
+\item \textbf{Prepare the offline Python dependency cache.}
+
+\textbf{Inputs.} The utility notebook is \url{https://github.com/AndreasBis/AIMOProofPilot-Solution/blob/main/kaggle/aimoproofpilot-utils.ipynb}. It downloads the offline wheel cache used by the final Kaggle notebook. A HuggingFace repository is not attached for this cache, because it is a runtime dependency artifact rather than model weights.
+
+Run the utility notebook once before the submission notebook. It writes the offline wheel directory and the corresponding package snapshot used during inference.
+
+\textbf{Outputs.} The outputs are \path{/kaggle/working/wheels} and \path{/kaggle/working/kaggle_requirements.txt}. Public artifact links for these generated dependency outputs are missing from the supplied material.
+
+\item \textbf{Launch the local vLLM service.}
+
+\textbf{Inputs.} The final inference notebook is \url{https://github.com/AndreasBis/AIMOProofPilot-Solution/blob/main/kaggle/aimoproofpilot-submission.ipynb}. The other inputs are the staged \texttt{OLMo-3.1-32B-Think} directory from step 1 and the offline wheels from step 2. The notebook code is adapted from \url{https://github.com/AndreasBis/AIMOProofPilot-Solution/blob/main/notebooks/submission_v6.ipynb}.
+
+The notebook installs from the offline wheel cache, performs a CUDA preflight, and starts a local OpenAI-compatible vLLM service for the staged contestant model. The notebook waits until the local health endpoint is ready before generation starts.
+
+\textbf{Outputs.} The outputs are the local OpenAI-compatible endpoint at \url{http://127.0.0.1:8000/v1}, \path{/kaggle/working/vllm_command.json}, \path{/kaggle/working/vllm_stdout.log}, and \path{/kaggle/working/vllm_stderr.log}. Public artifact links for the runtime logs are missing from the supplied material.
+
+\item \textbf{Generate one proof for each official test problem.}
+
+\textbf{Inputs.} The inputs are the official competition \texttt{test.csv}, the local vLLM endpoint from step 3, and the prompt-and-generation code in \url{https://github.com/AndreasBis/AIMOProofPilot-Solution/blob/main/kaggle/aimoproofpilot-submission.ipynb}.
+
+For each row of \texttt{test.csv}, the notebook sends one chat completion request. The system prompt asks for an English olympiad-style proof with stable notation, explicit justification of nontrivial steps, standard LaTeX where useful, and no private reasoning in the final answer. The notebook extracts the final answer text when thinking delimiters are present and removes residual chat tags. No judge model, tool execution, sequential refinement pass, or trained adapter is used in this final step.
+
+\textbf{Outputs.} The output is an in-memory list of records containing the official problem ID and one generated proof string for that problem. No standalone public artifact link exists for this intermediate in-memory output.
+
+\item \textbf{Write the final submission file.}
+
+\textbf{Inputs.} The inputs are the generated proof records from step 4 and the configured answer character limit in \url{https://github.com/AndreasBis/AIMOProofPilot-Solution/blob/main/kaggle/aimoproofpilot-submission.ipynb}.
+
+The notebook truncates each proof to the character limit, pairs it with its official problem ID, constructs a dataframe with columns \texttt{id} and \texttt{answer}, and writes the final CSV file.
+
+\textbf{Outputs.} The final product is \path{/kaggle/working/submission.csv}.
+\end{enumerate}
+
+\endgroup
